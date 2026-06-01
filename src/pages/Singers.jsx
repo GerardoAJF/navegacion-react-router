@@ -1,28 +1,32 @@
 import React from "react";
 
-import DataTestForm from "../components/DataTestForm";
-import DataTestList from "../components/DataTestList";
-import useDataTest from "../hooks/useDataTest";
+import useDataSingers from "../hooks/useDataSingers";
 
-const Contact = () => {
+import DataSingersForm from "../components/DataSingersForm";
+import DataSingersList from "../components/DataSingersList";
+
+const Singers = () => {
+
     const {
         activeTab,
         setActiveTab,
-        dataTest,
+        data,
         loading,
         submitting,
         error,
         message,
         id,
-        name,
-        setName,
-        age,
-        setAge,
+        song,
+        setSong,
+        singer,
+        setSinger,
+        nacionality,
+        setNacionality,
         openCreateForm,
         handleEdit,
         handleSubmit,
         handleDelete,
-    } = useDataTest();
+    } = useDataSingers();
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-blue-50 px-4 py-10">
@@ -32,11 +36,10 @@ const Contact = () => {
                         Data Test CRUD
                     </p>
                     <h1 className="mt-3 text-3xl font-bold sm:text-4xl">
-                        Contact ahora funciona como CRUD para la API remota
+                        Singers ahora funciona como CRUD para la API remota
                     </h1>
                     <p className="mt-3 max-w-3xl text-sm text-slate-300 sm:text-base">
-                        Puedes crear, editar, eliminar y volver a cargar los registros con
-                        nombre y edad desde la API de Retool.
+                        Puedes crear, editar, eliminar y volver a cargar los registros desde la API de Retool.
                     </p>
 
                     <div className="mt-6 flex flex-wrap gap-3">
@@ -64,12 +67,14 @@ const Contact = () => {
                 </header>
 
                 {activeTab === "form" ? (
-                    <DataTestForm
+                    <DataSingersForm
                         id={id}
-                        name={name}
-                        setName={setName}
-                        age={age}
-                        setAge={setAge}
+                        song={song}
+                        setSong={setSong}
+                        singer={singer}
+                        setSinger={setSinger}
+                        nacionality={nacionality}
+                        setNacionality={setNacionality}
                         onSubmit={handleSubmit}
                         onCancel={() => setActiveTab("list")}
                         submitting={submitting}
@@ -77,8 +82,8 @@ const Contact = () => {
                         message={message}
                     />
                 ) : (
-                    <DataTestList
-                        dataTest={dataTest}
+                    <DataSingersList
+                        dataTest={data}
                         loading={loading}
                         error={error}
                         onAdd={openCreateForm}
@@ -88,7 +93,7 @@ const Contact = () => {
                 )}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Contact;
+export default Singers
